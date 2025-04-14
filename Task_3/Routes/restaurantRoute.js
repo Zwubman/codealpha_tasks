@@ -7,10 +7,10 @@ import {
 } from "../Controllers/restaurantController.js";
 import { verifyToken } from "../Middlewares/authMiddleware.js";
 
-const router = express.Router();
+const restaurantRouter = express.Router();
 
-router.post("/register-restaurant", registerRestaurant);
-router.post("/restaurant-login", restaurantLogIn);
-router.put("/update-restaurant", verifyToken,  updateRestaurant);
+restaurantRouter.post("/register-restaurant", registerRestaurant);
+restaurantRouter.post("/restaurant-login", restaurantLogIn);
+restaurantRouter.put("/update-restaurant", verifyToken,  updateRestaurant);
 
-export default router;
+export default restaurantRouter;

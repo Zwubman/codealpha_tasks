@@ -14,14 +14,14 @@ import {
   checkManagerRole,
 } from "../Middlewares/authMiddleware.js";
 
-const router = express.Router();
+const reserveRouter = express.Router();
 
-router.post("/create-reserve/:id", verifyToken, checkManagerRole, createReservationTable);
-router.delete("/delete-reservation", verifyToken, checkManagerRole, deleteReserveTable);
-router.post("/reservation", verifyToken, bookReservation);
-router.post("/cancel-reservation", verifyToken, cancelBookedReservation);
-router.post("/pay", verifyToken,  payForReservation);
-router.get("/callback",verifyToken, paymentCallback);
-router.get("/my-rservations", verifyToken, getMyReservation);
+reserveRouter.post("/create-reserve/:id", verifyToken, checkManagerRole, createReservationTable);
+reserveRouter.delete("/delete-reservation", verifyToken, checkManagerRole, deleteReserveTable);
+reserveRouter.post("/reservation", verifyToken, bookReservation);
+reserveRouter.post("/cancel-reservation", verifyToken, cancelBookedReservation);
+reserveRouter.post("/pay", verifyToken,  payForReservation);
+reserveRouter.get("/callback",verifyToken, paymentCallback);
+reserveRouter.get("/my-rservations", verifyToken, getMyReservation);
 
-export default router;
+export default reserveRouter;

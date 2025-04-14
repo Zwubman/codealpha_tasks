@@ -14,13 +14,13 @@ import {
   checkSuplierRole,
 } from "../Middlewares/authMiddleware.js";
 
-const router = express.Router();
+const inventoryRouter = express.Router();
 
-router.post("/add-ingredient/:id",verifyToken, checkCheifRole, addInventory);
-router.put("/update-ingredient/:id", verifyToken, checkCheifRole, updateIngredientById);
-router.get("/all-ingredients", verifyToken, checkCheifRole, getAllIngredient);
-router.get("/one-ingredient/:id", verifyToken, checkCheifRole, getIngredientById);
-router.delete("/delete-ingredient/:id", verifyToken, checkCheifRole, deleteIngredientById);
-router.post("/suplie/:id", verifyToken, checkSuplierRole, suplieIngredeints);
+inventoryRouter.post("/add-ingredient/:id",verifyToken, checkCheifRole, addInventory);
+inventoryRouter.put("/update-ingredient/:id", verifyToken, checkCheifRole, updateIngredientById);
+inventoryRouter.get("/all-ingredients", verifyToken, checkCheifRole, getAllIngredient);
+inventoryRouter.get("/one-ingredient/:id", verifyToken, checkCheifRole, getIngredientById);
+inventoryRouter.delete("/delete-ingredient/:id", verifyToken, checkCheifRole, deleteIngredientById);
+inventoryRouter.post("/suplie/:id", verifyToken, checkSuplierRole, suplieIngredeints);
 
-export default router;
+export default inventoryRouter;

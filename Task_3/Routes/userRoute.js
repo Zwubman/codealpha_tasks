@@ -12,11 +12,11 @@ import {
   checkManagerRole,
 } from "../Middlewares/authMiddleware.js";
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post("/register-employee", verifyToken, checkManagerRole, registerNewEmployee);
-router.put("/update-password/:id", verifyToken,  updatePassword);
-router.get("/all-employee", verifyToken, checkManagerRole, getAllEmployee);
-router.get("/employee/:id", verifyToken, checkManagerRole, getEmployeeById);
+userRouter.post("/register-employee", verifyToken, checkManagerRole, registerNewEmployee);
+userRouter.put("/update-password/:id", verifyToken,  updatePassword);
+userRouter.get("/all-employee", verifyToken, checkManagerRole, getAllEmployee);
+userRouter.get("/employee/:id", verifyToken, checkManagerRole, getEmployeeById);
 
-export default router;
+export default userRouter;

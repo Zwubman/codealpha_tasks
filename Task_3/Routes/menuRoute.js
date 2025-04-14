@@ -15,15 +15,15 @@ import {
   checkChefRole,
 } from "../Middlewares/authMiddleware.js";
 
-const router = express.Router();
+const menuRouter = express.Router();
 
 
-router.post("/add-item/:id", verifyToken, checkCheifRole, addMenuItem);
-router.post("/add-ingredients/:id", verifyToken, checkChefRole, addIngredientsToItem);
-router.delete("/remove-ingredient/:id", verifyToken, checkChefRole, removeIngredeintFromItem);
-router.delete("/make-unavailable/:id", verifyToken, checkChefRole, deleteMenuItemById);
-router.post("/make-available/:id", verifyToken, checkChefRole,  makeAvailableItem);
-router.put("/update-item/:id", verifyToken, checkChefRole,  updateMenuItem);
-router.get("/all-items", verifyToken, checkChefRole, getAllMenuItem);
+menuRouter.post("/add-item/:id", verifyToken, checkCheifRole, addMenuItem);
+menuRouter.post("/add-ingredients/:id", verifyToken, checkChefRole, addIngredientsToItem);
+menuRouter.delete("/remove-ingredient/:id", verifyToken, checkChefRole, removeIngredeintFromItem);
+menuRouter.delete("/make-unavailable/:id", verifyToken, checkChefRole, deleteMenuItemById);
+menuRouter.post("/make-available/:id", verifyToken, checkChefRole,  makeAvailableItem);
+menuRouter.put("/update-item/:id", verifyToken, checkChefRole,  updateMenuItem);
+menuRouter.get("/all-items", verifyToken, checkChefRole, getAllMenuItem);
 
-export default router;
+export default menuRouter;
