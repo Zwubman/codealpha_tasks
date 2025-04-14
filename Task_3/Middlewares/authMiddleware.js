@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import User from "../Models/userModel.js";
 import Restaurant from "../Models/restaurantModel.js";
 
-
 // Verifies the provided token from the authorization header, checks if the token belongs to a valid user or restaurant,
 export const verifyToken = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -61,9 +60,9 @@ export const verifyToken = async (req, res, next) => {
 export const checkAdminRole = async (req, res, next) => {
   try {
     if (req.user.role === "Admin") {
-      next();
+      return next();
     }
-    res.status(403).json({ message: "Access denied" });
+    return res.status(403).json({ message: "Access denied" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Invalid credentail." });
@@ -74,23 +73,22 @@ export const checkAdminRole = async (req, res, next) => {
 export const checkChefRole = async (req, res, next) => {
   try {
     if (req.user.role === "Chef") {
-      next();
+      return next();
     }
-    res.status(403).json({ message: "Access denied." });
+    return res.status(403).json({ message: "Access denied." });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Invalid Credential." });
   }
 };
 
-
 //Check the role of the user is Manager or not and give the access to the user
 export const checkManagerRole = async (req, res, next) => {
   try {
     if (req.user.role === "Manager") {
-      next();
+      return next();
     }
-    res.status(403).json({ messag: "Access denied." });
+    return res.status(403).json({ messag: "Access denied." });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Invalid Credential.", error });
@@ -101,9 +99,9 @@ export const checkManagerRole = async (req, res, next) => {
 export const checkCashierRole = async (req, res, next) => {
   try {
     if (req.user.role === "Cashier") {
-      next();
+      return next();
     }
-    res.status(403).json({ message: "Access denied." });
+    return res.status(403).json({ message: "Access denied." });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Invalid Credential.", error });
@@ -114,9 +112,9 @@ export const checkCashierRole = async (req, res, next) => {
 export const checkWaiterRole = async (req, res, next) => {
   try {
     if (req.user.role === "Waiter") {
-      next();
+      return next();
     }
-    res.status(403).json({ message: "Access denied." });
+    return res.status(403).json({ message: "Access denied." });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Invalid Credential.", error });
@@ -124,27 +122,27 @@ export const checkWaiterRole = async (req, res, next) => {
 };
 
 //Check the role of the user is Chief or not and give the access to the user
-export const checkCheifRole = async(req, res, next) =>{
-  try{
-    if(req.user.role === "Cheif"){
-      next()
+export const checkCheifRole = async (req, res, next) => {
+  try {
+    if (req.user.role === "Cheif") {
+      return next();
     }
-    res.status(403).josn({messsage: "Access deneid."})
-  }catch(error){
+    return res.status(403).josn({ messsage: "Access deneid." });
+  } catch (error) {
     console.log(error);
-    res.status(500).json({message: "Invalid Credential.", error})
+    res.status(500).json({ message: "Invalid Credential.", error });
   }
-}
+};
 
 //Check the role of the user is Suplier or not and give the access to the user
-export const checkSuplierRole = async(req, res, next) =>{
-  try{
-    if(req.user.role === "Suplier"){
-      next()
+export const checkSuplierRole = async (req, res, next) => {
+  try {
+    if (req.user.role === "Suplier") {
+      return next();
     }
-    res.status(403).josn({messsage: "Access deneid."})
-  }catch(error){
+    return res.status(403).josn({ messsage: "Access deneid." });
+  } catch (error) {
     console.log(error);
-    res.status(500).json({message: "Invalid Credential.", error})
+    res.status(500).json({ message: "Invalid Credential.", error });
   }
-}
+};
