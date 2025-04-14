@@ -9,12 +9,12 @@ import {
 } from "../Controllers/userController.js";
 import { verifyToken } from "../Middlewares/authMiddleware.js";
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post("/sign-up", signUp);
-router.post("/sign-in", signIn);
-router.post("/registration/:eventId", verifyToken,  userRegistration);
-router.post("/cancel-registration/:eventId", verifyToken,  cancelRegistration);
-router.get("/user-events",verifyToken,  getAllEventRegisteredTo);
+userRouter.post("/sign-up", signUp);
+userRouter.post("/sign-in", signIn);
+userRouter.post("/registration/:eventId", verifyToken,  userRegistration);
+userRouter.post("/cancel-registration/:eventId", verifyToken,  cancelRegistration);
+userRouter.get("/user-events",verifyToken,  getAllEventRegisteredTo);
 
-export default router;
+export default userRouter;

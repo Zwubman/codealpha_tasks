@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import express from "express";
 import { redirectToOriginalUrl, shortenUrl, userCustomUrl} from "../Controllers/urlController.js";
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post('/shorten', shortenUrl);
-router.post('/customurl', userCustomUrl)
-router.get('/:shortId', redirectToOriginalUrl);
+userRouter.post('/shorten', shortenUrl);
+userRouter.post('/customurl', userCustomUrl)
+userRouter.get('/:shortId', redirectToOriginalUrl);
 
-export default router;
+export default userRouter;
