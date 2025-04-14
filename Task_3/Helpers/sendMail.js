@@ -16,6 +16,8 @@ export const sendEmailNotification = async (
   reservationAmount = null // Optional for cancellation
 ) => {
   try {
+
+    // Create a transporter object using SMTP
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -29,6 +31,7 @@ export const sendEmailNotification = async (
     let subject = "";
     let emailBody = "";
 
+    // Set the subject and body based on the type of email
     if (type === "booking") {
       subject = "Reservation Is Successfully Booked!";
       emailBody = `
@@ -63,6 +66,8 @@ export const sendEmailNotification = async (
       throw new Error("Invalid email type. Use 'booking' or 'cancellation'.");
     }
 
+
+    // Set up the email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: userEmail,
@@ -75,6 +80,7 @@ export const sendEmailNotification = async (
       `,
     };
 
+    // Send the email
     await transporter.sendMail(mailOptions);
     console.log(`Email sent successfully to: ${userEmail}`);
   } catch (error) {

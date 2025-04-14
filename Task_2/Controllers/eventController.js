@@ -15,6 +15,7 @@ export const createEvent = async (req, res) => {
       agenda,
     } = req.body;
     const userId = req.user._id;
+
     const isExist = await Event.findOne({
       title,
       date,
@@ -134,7 +135,7 @@ export const deleteEvent = async (req, res) => {
       { isDeleted: true },
       { new: true }
     );
-    
+
     //Check whether the event is foun or not
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
@@ -167,22 +168,25 @@ export const getEventById = async (req, res) => {
   }
 };
 
-
 //Get the all user rigistered for specific event
-export const getAllregisteredUsers = async(req, res) => {
-  try{
+export const getAllregisteredUsers = async (req, res) => {
+  try {
     const eventId = req.params.id;
-    const event = await Event.findOne({_id: eventId, isDeleted: false });
+    const event = await Event.findOne({ _id: eventId, isDeleted: false });
 
-    if(!event){
-      return res.status(404).json({message: "Event not found."})
+    if (!event) {
+      return res.status(404).json({ message: "Event not found." });
     }
-    
+
     const users = event.registeredUsers;
-    
-    res.status(200).json({message: "Users registered for this event is: ", users})
-  }catch(error){
+
+    res
+      .status(200)
+      .json({ message: "Users registered for this event is: ", users });
+  } catch (error) {
     console.log(error);
-    res.status(500).json({message: "Fail to fetch all registered users for this event."})
+    res
+      .status(500)
+      .json({ message: "Fail to fetch all registered users for this event." });
   }
-}
+};
