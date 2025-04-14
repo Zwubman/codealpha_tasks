@@ -4,25 +4,29 @@ import jwt from "jsonwebtoken";
 import User from "../Models/userModel.js";
 import Restaurant from "../Models/restaurantModel.js";
 
-// Verifies the provided token from the authorization header, checks if the token belongs to a valid user or restaurant,
-export const verifyToken = async (req, res, next) => {
-  const authHeader = req.headers["authorization"];
 
+//Middleware to check if the user is authenticated
+export const verifyToken = async (req, res, next) => {
+
+  //Check if the token is present in the request
+  const authHeader = req.headers["authorization"];
   if (!authHeader) {
     return res
       .status(401)
       .json({ message: "Authorization header is required." });
   }
 
+  //Check if the token is in the correct format
   const token = authHeader.split(" ")[1];
-
   if (!token) {
     return res.status(400).json({ message: "Token not found." });
   }
 
   try {
+    //Verify the token using the secret key
     jwt.verify(token, process.env.ACCESS_TOKEN_KEY, async (err, decoded) => {
       if (err) {
+        //Handle token verification errors
         if (err.name === "TokenExpiredError") {
           return res
             .status(401)
